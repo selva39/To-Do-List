@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>TO-DO LIST</title>
+  </head>
+  <style>
+    /* Container styling */
+    #container {
+      max-width: 400px;
+      margin: 0 auto;
+      padding: 20px;
+      background-color: #f9f9f9;
+      border-radius: 8px;
+      box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+      text-align: center;
+    }
+
+    /* Header styling */
+    #container h1 {
+      margin-bottom: 20px;
+      font-family: "Arial", sans-serif;
+      color: #333;
+    }
+
+    /* Input field styling */
+    #todo {
+      width: 100%;
+      padding: 10px;
+      margin-bottom: 10px;
+      border: 1px solid #ccc;
+      border-radius: 4px;
+      font-size: 16px;
+      box-sizing: border-box;
+    }
+
+    /* Button styling */
+    #btn {
+      width: 100%;
+      padding: 10px;
+      background-color: #4caf50;
+      color: white;
+      border: none;
+      border-radius: 4px;
+      font-size: 16px;
+      cursor: pointer;
+      transition: background-color 0.3s ease;
+    }
+
+    #btn:hover {
+      background-color: #45a049;
+    }
+
+    /* Output list styling */
+    #output {
+      max-width: 400px;
+      margin: 20px auto;
+      padding: 10px;
+      background-color: #f1f1f1;
+      border-radius: 8px;
+    }
+
+    #todoList {
+      list-style-type: none;
+      padding: 0;
+      margin: 0;
+    }
+
+    #todoList li {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      background-color: #e2e2e2;
+      margin: 5px 0;
+      padding: 10px;
+      border-radius: 4px;
+      font-size: 16px;
+      font-family: "Arial", sans-serif;
+    }
+
+    /* Delete button styling */
+    .delete-btn {
+      background-color: transparent;
+      border: none;
+      color: #ff4c4c;
+      font-size: 18px;
+      cursor: pointer;
+      transition: color 0.3s ease;
+    }
+
+    .delete-btn:hover {
+      color: #ff0000;
+    }
+  </style>
+  <body>
+    <div id="container">
+      <h1>TO-DO LIST</h1>
+      <form action="">
+        <input
+          type="text"
+          id="todo"
+          name="todo"
+          placeholder="Enter something"
+        />
+        <button type="submit" id="btn">Submit</button>
+      </form>
+    </div>
+    <div id="output">
+      <ol id="todoList"></ol>
+    </div>
+    <script>
+      document
+        .getElementById("btn")
+        .addEventListener("click", function (event) {
+          event.preventDefault();
+          showList();
+        });
+      function showList() {
+        debugger;
+        var data = document.getElementById("todo").value;
+        if (data.trim() !== "") {
+          var listItem = document.createElement("li");
+          listItem.textContent = data;
+
+          //create delete button
+          var deleteButton = document.createElement("button");
+          deleteButton.textContent = "🗑️";
+          deleteButton.className = "delete-btn";
+          listItem.appendChild(deleteButton);
+          // Add event listener to delete the list item
+          deleteButton.addEventListener("click", function () {
+            alert("Are your sure ,want to delete this item?");
+            listItem.remove();
+          });
+          document.getElementById("todoList").appendChild(listItem);
+        }
+        document.getElementById("todo").value = "";
+      }
+    </script>
+  </body>
+</html>
